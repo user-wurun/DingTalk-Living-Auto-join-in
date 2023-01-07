@@ -1,47 +1,17 @@
-import filecmp
 import os
 import time
 from ctypes import *
 from ctypes import windll
 
-import pyautogui
 import win32api
 import win32con
-import win32process
-
 import wmi
 import base64
+
 import json
 import configparser
 
 print('欢迎使用钉钉智能')
-c = wmi.WMI()
-
-for bios_id in c.Win32_BIOS():
-    userid = bios_id.SerialNumber.strip()
-    print('你的激活码是:' + userid)
-conf = configparser.ConfigParser()
-data_bytes = json.dumps(userid).encode()
-#print(type(data_bytes))
-# 编码
-base_data = base64.b64encode(data_bytes)
-#print(base_data)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-conf.read(os.path.join(BASE_DIR ,'confit.ini'))
-print('正在检测你的激活状态')
-n = conf.get("about","key")
-print('正在连接至服务器')
-print('正在加载配置文件')
-time.sleep(0.5)
-s1= base_data.decode('utf-8')
-if s1 == n:
-    print('已激活')
-else:
-    print('未激活，请前往官网ding.runsheng.asia，联系开发者以获得激活文件')
-    print('软件将在5s后退出')
-    time.sleep(5)
-    os._exit ()
-
 print('本软件支持市面上主流的16:9显示器，如果你的长宽比较为特殊，可能该软件并不适合你。')
 
 x = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)   #获得屏幕分辨率X轴
@@ -67,9 +37,9 @@ if ass == 'y':
     x = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)   #获得屏幕分辨率X轴
     y = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)   #获得屏幕分辨率Y轴
 
-    ny = y*80
+    ny = y*90
     p = int(ny//108)
-    nx = x*150
+    nx = x*140
     o = int(nx//192)
 #死循环
 while True:
