@@ -5,11 +5,6 @@ from ctypes import windll
 
 import win32api
 import win32con
-import wmi
-import base64
-
-import json
-import configparser
 
 print('欢迎使用钉钉智能')
 print('本软件支持市面上主流的16:9显示器，如果你的长宽比较为特殊，可能该软件并不适合你。')
